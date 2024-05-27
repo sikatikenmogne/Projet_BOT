@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "monprojetchat-2024",
+  "private_key_id": "ca4187bfef81bb0f19e0595ebd2f482356ae0d5d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDRfkB7r0rfwTn+\nAL1TZlSeN10c1GXF1J8s8qEgRXJ7oJGh/aCxZRPakwHcC2o3jJqsQnKmi1928AZ0\nhOrIfkDn15wVy7aYgIoQJh1TWit3mQxkJiQfzNM+LOl4lHXubSk3vdpc2Ei5pqKW\ndJZmyWxCN0HOqG6tYgXfjaxLxd/p7nKjM+ymle3uj/hSOXyq+rZsAZNXlcEjc9NL\nnNj4c05/W+2OJKEax9fv9DPfQCtMHtXAg8l4kdkKH+QRDYrcNrkPajcYQRDaydds\nqKWVNH8QCILMrzvSP1ZEauRG1cc5GYtrnjhToKvrfzS0sOSDVC9rRTKxaWsgamlW\nf+0KNUwdAgMBAAECggEAINy9r8lFJQlyF+q0yEbmojUMGbAl0N00JQBgjyfluAft\noGwhT4KMFT73TTXLMTCQuNHpmz+Et6saUB/jlpTbiKLVXMPqfky3m6Xm9sLPy8CJ\n5ZHoG8btIjU4YI5lW4PrMc/J18Oj0N+XZKOgTjptjYuOeqUIS5FzW2ilbPN61v6k\nR9waGjbDicpVIxoMwkfGeRJCa6H/QLgaCsc+6RjY10LjeWkm6yEivT6Z4EhuidGD\n0ioRT1k/ulI8/CuAW0wlYHbcSUt6sm7Iiy3JkX4mf5a4TXrBuTal6/M4JGAf/zXk\nsTILyd6IuSas7oKUkZpmhoFpebmuFb2yWkHs7dIzfwKBgQD5nIJkq5kiO/JNXlm5\ncaEWbztNZSTLyZP9NOOxO4UyzP7VIVk6EhbwybzphZ8ZQ685WX3pcTOQuE4wI7Nq\n9F00AZAkHWIpaK5FqtPfz4+IH4saGCm2zI2glyU+HetEl0iZC1G6c5oPO3GAUGkJ\nMFB08Y/sMKE4cSBP74HdCJ2e4wKBgQDW2uHXTwu+JmLgitW34reFsfoeTneCpjnc\nd27+avkKn8GqsGL1E97WSA+k63g8hWpUDx+WKRiObZXOnIWm3UqX2hzw35wBocHZ\njJVd/O7JDWuFHOHf0Fu73MfYJbJ1zKl3xXe7y3lbHg74+nLvNBzQQQ8Ii2+dlsEj\neeLA3PJY/wKBgAMMBgt0jMn+MVcAb9fzqyO6995Z/bj/HO9aVe0z7MxR9EplvdEX\np3AJBmVTXD3StbDdhsvytc5ucYXk6avEj96ypi/KrAgVXws6qptwzS+8MtZ+tQOm\nO5RaQ/oeI2ES96/mk3jTMG4/K4OFd8LE9DZ5PGiFr3Ig72QKaGtqT4JBAoGBANCA\nYzAdvoiOGeBL+vDTbEOrHs2wWhwIkhgYMzdkuj+MH1Y0jCPHX7XVApGKDQm2cyQV\n9RI02WbGg92YWb8/+vZ4LSO37F5NCqDC4+Ts4xFrG493It+fBJa/v5RLqO7WaRMZ\nJ4OwBxnchq0p5sWpbdjPefZR0kQ9GzsBOoLtJ6YjAoGAXlDGq+x19c6UaYUWNbmv\nVCs9VNPx4E5UQM2owXZzaPziITXJWuJWziz8AJ4pSeGrKcGVa3YdnB4Za60TEf1N\nHPIAClPzfcDyJZAh5+CRJDiXdIiz3KfCy6n4YJgRKuTzrHSbfFZ8Aiyqcx2G+CVT\nU6kUcFa5TQFy7AgszZK6BfA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "comptedeservicegeneratif@monprojetchat-2024.iam.gserviceaccount.com",
+  "client_id": "110158346834627928326",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/comptedeservicegeneratif%40monprojetchat-2024.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
