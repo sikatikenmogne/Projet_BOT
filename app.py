@@ -38,18 +38,24 @@ def addCommande():
     date = data.get('date')
     heure = data.get('heure')
     stat = data.get('stat')
+    quant = data.get('quant')
 
     try:
         cur = mysql.connection.cursor()
 
-        cur.execute("CALL addCommande(%s, %s, %s,@id_commande)", (idUser, date, stat))
+        cur.execute("CALL InsertCommande_new(%s, %s, %s)", (idUser, date, stat))
+
         cur.execute("SELECT @id_commande")
 
         id_commande = cur.fetchone()
         if id_commande:
             id_commande = id_commande[0]
 
-        cur.execute("CALL AddLigneCommande(%s, %s,%s)", (id_commande, date, heure, idUser))
+
+            try:
+                cur.execute("CALL AddLigneCommande(%s,%s, %s,%s)", (id_commande, date, heure, idUser))
+            except Exception as e:
+                print(e)
 
         mysql.connection.commit()
         cur.close()
