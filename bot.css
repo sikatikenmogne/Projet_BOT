@@ -72,16 +72,18 @@ body {
     background: orange;
     max-width: 60.6%;
     width: fit-content;
+    color: black;
 }
 
 .messages__item--operator {
     margin-left: auto;
+    color: black;
 }
 
 .messages__item--visitor {
     margin-right: auto;
+    color: black;
 }
-
 /* FOOTER */
 .chat__footer {
     position: sticky;
@@ -150,7 +152,7 @@ body {
     border-top-right-radius: 20px;
     border-bottom-left-radius: 20px;
     background: var(--primary);
-    color: white;
+    color: black;
 }
 
 /* FOOTER */
