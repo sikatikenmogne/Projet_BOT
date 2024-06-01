@@ -1,5 +1,8 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, render_template, request,url_for
 from flask_mysqldb import MySQL
+from jinja2 import TemplateNotFound
+
+from Chat import discussion
 
 app = Flask(__name__)
 
@@ -12,6 +15,14 @@ app.config['MYSQL_DB'] = 'chatbot_second'
 
 mysql = MySQL(app)
 
+@app.route('/')
+def index():
+    try:
+        return render_template('bot.html')
+    except TemplateNotFound as e:
+        return f"Template not found: {e}", 404
+    except Exception as e:
+        return f"An error occurred: {e}", 500
 
 @app.route('/reservation', methods = ['POST'])
 def ajouter_reservation():
@@ -29,6 +40,13 @@ def ajouter_reservation():
         return ("Sucess")
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route('/chat', methods = ['POST'])
+def interraction():
+    data = request.get_json()
+    message = data.get('message')
+    response  = discussion(message)
+    return response
 
 
 @app.route('/commande', methods=['POST'])
@@ -89,12 +107,6 @@ def get_products():
 
     return jsonify(products_list)
 
-
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
-
-
 
