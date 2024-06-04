@@ -44,10 +44,11 @@ def ajouter_reservation():
 @app.route('/chat', methods = ['POST'])
 def interraction():
     data = request.get_json()
-    message = data.get('message')
-    response  = discussion(message)
-    return response
+    message = data['message']
+    response = discussion(message)
+    response_str = str(response)
 
+    return response_str #json.dumps(response_dict)
 
 @app.route('/commande', methods=['POST'])
 def addCommande():
@@ -56,7 +57,7 @@ def addCommande():
     date = data.get('date')
     heure = data.get('heure')
     stat = data.get('stat')
-    quant = data.get('quant')
+    # quant = data.get('quant')
 
     try:
         cur = mysql.connection.cursor()

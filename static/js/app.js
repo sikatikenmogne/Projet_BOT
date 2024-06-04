@@ -46,7 +46,7 @@ class Chat{
         let msg1 = { name: "User", message: text1 }
         this.messages.push(msg1);
 
-        fetch('http://127.0.0.1:5000/reservation', {
+        fetch('http://127.0.0.1:5000/chat', {
             method: 'POST',
             body: JSON.stringify({ message: text1 }),
             mode: 'cors',
@@ -54,14 +54,14 @@ class Chat{
               'Content-Type': 'application/json'
             },
           })
-          .then(r => r.json())
-          .then(r => {
-            let msg2 = { name: "Mires", message: r.answer };
-            this.messages.push(msg2);
-            this.updateChatText(chat)
-            textField.value = ''
-
-        }).catch((error) => {
+          .then(response => response.text())
+          .then(responseText => {
+              let msg2 = { name: "Mires", message: responseText };
+              this.messages.push(msg2);
+              this.updateChatText(chat);
+              textField.value = '';
+          })
+        .catch((error) => {
             console.error('Error:', error);
             this.updateChatText(chat)
             textField.value = ''
@@ -89,3 +89,41 @@ class Chat{
 const chat = new Chat();
 
 chat.display();
+
+
+
+// onSendButton(chat) {
+//     var textField = chat.querySelector('input');
+//     let text1 = textField.value;
+//     if (text1 === "") {
+//       return;
+//     }
+
+//     let msg1 = { name: "User", message: text1 };
+//     this.messages.push(msg1);
+
+//     this.sendMessage(text1, chat, textField);
+//   }
+
+//   sendMessage(message, chat, textField) {
+//     fetch('http://127.0.0.1:5000/chat', {
+//       method: 'POST',
+//       body: JSON.stringify({ message: message }),
+//       mode: 'cors',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     })
+//     .then(r => r.json())
+//     .then(response => {
+//       let msg2 = { name: "Assistant", message: response.message };
+//       this.messages.push(msg2);
+//       this.updateChatText(chat);
+//       textField.value = '';
+//     })
+//     .catch((error) => {
+//       console.error('Error:', error);
+//       this.updateChatText(chat);
+//       textField.value = '';
+//     });
+//   }
