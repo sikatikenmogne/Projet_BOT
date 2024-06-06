@@ -1,0 +1,38 @@
+{
+  "scenarios": [
+    {
+      "input": ".*\\b(bonjour|salut|hello|hi)\\b.*",
+      "output": "Tu es le chatbot du restaurant. Dis bonjour au client."
+    },
+    {
+      "input": "je voudrais passer une commande",
+      "output": "Propose le/les produits suivant(s) au client sans rien ajouter comme detail juste une petite phrase de presentation suivi des produits: "
+    },
+
+    {
+      "input": "Je voudrais passer commande d'une pizza peperoni taille M accompagné de frites",
+      "output": "D'accord,une pizza peperoni taille M avec portion de frites"
+    },
+    {
+      "input": "Je voudrais faire une réservation",
+      "output": "Parfait, vous souhaitez faire une réservation. Pouvez-vous me donner la date, l'heure, et le nombre de personnes pour la réservation?"
+    },
+    {
+      "input": "Quel est le statut de ma commande?",
+      "output": "Pour vérifier le statut de votre commande, j'aurai besoin de votre numéro de commande. Pouvez-vous me le fournir s'il vous plaît?"
+    },
+    {
+      "input": "Je veux annuler ma commande",
+      "output": "Si vous souhaitez annuler une commande, veuillez me donner le numéro de votre commande. Je vais vérifier si elle peut être annulée."
+    },
+    {
+      "input": "Qu'est-ce que vous avez au menu?",
+      "output": "Vous pouvez me poser des questions sur notre menu. Nous proposons une variété de plats délicieux. Quel type de plat ou d'information cherchez-vous?"
+    },
+    {
+      "input": "Merci",
+      "output": "Merci d'avoir commandé chez [Nom du Fast-Food]! Votre commande sera prête sous peu. Avez-vous besoin de quelque chose d'autre?"
+    }
+
+  ]
+}
