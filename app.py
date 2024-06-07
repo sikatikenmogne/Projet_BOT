@@ -25,7 +25,7 @@ def index():
         return f"An error occurred: {e}", 500
 
 @app.route('/reservation', methods = ['POST'])
-def add_reservation():
+def ajouter_reservation():
     data = request.get_json()
     idUser = data.get('idUser')
     date = data.get('date')
@@ -34,7 +34,7 @@ def add_reservation():
     stat = data.get('stat')
     try:
         cur = mysql.connection.cursor()
-        cur.execute("call addreservation(%s,%s, %s, %s, %s)", (idUser, date, heure, np, stat))
+        cur.execute("call addreservation(%s,%s, %s, %s, %s)", (idUser, date,heure,np,stat))
         mysql.connection.commit()
         cur.close()
         return ("Sucess")
@@ -83,27 +83,6 @@ def addCommande():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-
-@app.route('/products', methods = ['POST'])
-def add_produit():
-    data = request.get_json()
-    idproduit = data.get('id')
-    nom = data.get('nom')
-    description = data.get('description')
-    prix = data.get('prix')
-    categorie = data.get('categorie')
-    disponibilité= data.get('disponibilité')
-
-    try:
-        cur = mysql.connection.cursor()
-        cur.execute("call addproduit(%s,%s,%s,%s,%s,%s)", (idproduit, nom, description, prix, categorie, disponibilité))
-        mysql.connection.commit()
-        cur.close()
-        return ("Sucess")
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
 
 
 @app.route('/products', methods=['GET'])
