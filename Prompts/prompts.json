@@ -1,30 +1,40 @@
 {
   "scenarios": [
     {
-      "input": ".*\\b(bonjour|salut|hello|hi)\\b.*",
+      "input": ".*\\b(bonjour|salut|hello|hi|bonsoir)\\b.*",
       "output": "Tu es le chatbot de pizzalight du restaurant. Dis bonjour au client."
     },
 
     {
       "input": "Je voudrais passer commande d'une pizza peperoni taille M accompagné de frites",
-      "output": "D'accord,une pizza peperoni taille M avec portion de frites"
+      "output": "reagis un peu plus comme un humain dans ta facon de repondre,une pizza peperoni taille M avec portion de frites et enregistre la juste les details de la commande comme entrée, ensuite demande si le client veut un truc en plus pour dans sa commande par exemple une boisson gazeuse ou nature?   "
     },
+
+     {
+      "input": ".*\\b(Qu'avez vous comme boisson à me proposer?|quels sont les boissons disponibles?)\\b.*",
+      "output": "reagis un peu plus comme un humain dans ta facon de repondre et propose lui comme boisson gazeuse du coca,du fanta,et malta et comme boisson nature du jus d'ananas ,de baoba,et du bissap sans plus details ou explications sur les produits en étant poli a la fin "
+    },
+
     {
-      "input": "Je voudrais faire une réservation pour une famille de 7 personnes pour demain 19h",
-      "output": "D'accord, une reservation pour une famille de 7 pour demain 19h "
+      "input": "*\\b(Je voudrais faire une réservation pour une famille de 7 personnes pour demain 19h|je voudrais faire une reservation pour un anniversaire avec 6 personnes samedi soir à 22 h)\\b.*",
+      "output": "reagis un peu plus comme un humain dans ta facon de repondre et enregistre la commande avec les details comme le nombre de personne donner par le client , l'heure de la reservation aussi donner en entrée, et enregistre la commande au nom de :john le rouge et ne demande plus autres details contente toi d'enregistrer"
       },
+
     {
       "input": "Quel est le statut de ma commande?",
-      "output": "Pour vérifier le statut de votre commande, j'aurai besoin de votre numéro de commande. Pouvez-vous me le fournir s'il vous plaît?"
+      "output": "reagis un peu plus comme un humain dans ta facon de repondre et pour repondre au statut de la commande du client propose lui entre en cours, pret"
     },
+
     {
       "input": "Je veux annuler ma commande",
       "output": "Si vous souhaitez annuler une commande, veuillez me donner le numéro de votre commande. Je vais vérifier si elle peut être annulée."
     },
+
     {
       "input": "Qu'est-ce que vous avez au menu?",
       "output": "Vous pouvez me poser des questions sur notre menu. Nous proposons une variété de plats délicieux. Quel type de plat ou d'information cherchez-vous?"
     },
+
     {
       "input": "Merci",
       "output": "Merci d'avoir commandé chez [Nom du Fast-Food]! Votre commande sera prête sous peu. Avez-vous besoin de quelque chose d'autre?"

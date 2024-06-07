@@ -24,8 +24,8 @@ body {
     display: flex;
     flex-direction: column;
     background: #333
-    width: 600px;
-    height: 350px;
+    max-width: 600px;
+    max-height: 350px;
     z-index: -123456;
     opacity: 0;
     transition: all .5s ease-in-out;
@@ -69,17 +69,22 @@ body {
 }
 
 .messages__item {
-    background: orange;
+    background-color: orange;
     max-width: 60.6%;
     width: fit-content;
+
 }
 
 .messages__item--operator {
     margin-left: auto;
+    background-color:black ;
+    color: black;
 }
 
 .messages__item--visitor {
     margin-right: auto;
+    background-color: green;
+    color: black;
 }
 
 /* FOOTER */
@@ -90,8 +95,8 @@ body {
 
 .chat__support {
     background: #f9f9f9;
-    height: 650;
-    width: 350;
+    max-height: 550;
+    max-width: 450;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -143,14 +148,16 @@ body {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    color:white;
+    background-color:orange;
 }
 
 .messages__item--operator {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    background: var(--primary);
-    color: black;
+    background-color: black;
+    color: white;
 }
 
 /* FOOTER */
