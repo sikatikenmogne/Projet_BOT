@@ -50,6 +50,7 @@ def interraction():
 
     return response_str #json.dumps(response_dict)
 
+
 @app.route('/commande', methods=['POST'])
 def addCommande():
     data = request.get_json()

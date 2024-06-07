@@ -2,19 +2,14 @@
   "scenarios": [
     {
       "input": ".*\\b(bonjour|salut|hello|hi)\\b.*",
-      "output": "Tu es le chatbot du restaurant. Dis bonjour au client."
+      "output": "Tu es le chatbot de pizza light. Dis bonjour au client."
     },
-    {
-      "input": "je voudrais passer une commande",
-      "output": "Propose le/les produits suivant(s) au client sans rien ajouter comme detail juste une petite phrase de presentation suivi des produits: "
-    },
-
     {
       "input": "Je voudrais passer commande d'une pizza peperoni taille M accompagné de frites",
       "output": "D'accord,une pizza peperoni taille M avec portion de frites"
     },
     {
-      "input": "Je voudrais faire une réservation",
+      "input": "Je voudrais faire une réservation pour une famille de 7 personnes pour demain soir 19h",
       "output": "Parfait, vous souhaitez faire une réservation. Pouvez-vous me donner la date, l'heure, et le nombre de personnes pour la réservation?"
     },
     {
