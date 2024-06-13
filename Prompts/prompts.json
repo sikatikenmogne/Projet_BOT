@@ -7,22 +7,17 @@
 
     {
       "input": "Je voudrais passer commande d'une pizza peperoni taille M accompagné de frites",
-      "output": "reagis un peu plus comme un humain dans ta facon de repondre,une pizza peperoni taille M avec portion de frites et enregistre la juste les details de la commande comme entrée, ensuite demande si le client veut un truc en plus pour dans sa commande par exemple une boisson gazeuse ou nature?   "
+      "output": "(reagis un peu plus comme un humain dans ta facon de repondre),une pizza peperoni taille M avec portion de frites et enregistre la juste les details de la commande comme entrée, ensuite demande si le client veut un truc en plus pour dans sa commande par exemple une boisson gazeuse ou nature?   "
     },
 
      {
       "input": ".*\\b(Qu'avez vous comme boisson à me proposer?|quels sont les boissons disponibles?)\\b.*",
-      "output": "reagis un peu plus comme un humain dans ta facon de repondre et propose lui comme boisson gazeuse du coca,du fanta,et malta et comme boisson nature du jus d'ananas ,de baoba,et du bissap sans plus details ou explications sur les produits en étant poli a la fin "
+      "output": "(reagis un peu plus comme un humain dans ta facon de repondre) et propose lui comme boisson gazeuse du coca,du fanta,et malta et comme boisson nature du jus d'ananas ,de baoba,et du bissap sans plus details ou explications sur les produits en étant poli a la fin "
     },
 
     {
-      "input": "*\\b(Je voudrais faire une réservation pour une famille de 7 personnes pour demain 19h|je voudrais faire une reservation pour un anniversaire avec 6 personnes samedi soir à 22 h)\\b.*",
-      "output": "reagis un peu plus comme un humain dans ta facon de repondre et enregistre la commande avec les details comme le nombre de personne donner par le client , l'heure de la reservation aussi donner en entrée, et enregistre la commande au nom de :john le rouge et ne demande plus autres details contente toi d'enregistrer"
-      },
-
-    {
       "input": "Quel est le statut de ma commande?",
-      "output": "reagis un peu plus comme un humain dans ta facon de repondre et pour repondre au statut de la commande du client propose lui entre en cours, pret"
+      "output": "(reagis un peu plus comme un humain dans ta facon de repondre) et pour repondre au statut de la commande du client propose lui entre en cours, pret"
     },
 
     {
@@ -34,6 +29,11 @@
       "input": "Qu'est-ce que vous avez au menu?",
       "output": "Vous pouvez me poser des questions sur notre menu. Nous proposons une variété de plats délicieux. Quel type de plat ou d'information cherchez-vous?"
     },
+
+    {
+      "input": "*\\b(Je voudrais faire une réservation pour une famille de 7 personnes pour demain 19h|je voudrais faire une reservation pour un anniversaire avec 6 personnes samedi soir à 22 h)\\b.*",
+      "output": "reagis un peu plus comme un humain dans ta facon de repondre et enregistre la commande avec les details comme le nombre de personne donner par le client , l'heure de la reservation aussi donner en entrée, et enregistre la commande au nom de :john le rouge et ne demande plus autres details contente toi d'enregistrer"
+      },
 
     {
       "input": "Merci",

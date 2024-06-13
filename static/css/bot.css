@@ -9,7 +9,8 @@ body {
     font-family: 'Nunito', sans-serif;
     font-weight: 600;
     font-size: 100%;
-    background: #D4D1D1;
+    background: url('/static/images/pizza.png') no-repeat center center fixed;
+    background-size: cover;
     color: white;
 }
 
@@ -24,8 +25,8 @@ body {
     display: flex;
     flex-direction: column;
     background: #333
-    max-width: 600px;
-    max-height: 350px;
+    width: 550px;
+    height: 450px;
     z-index: -123456;
     opacity: 0;
     transition: all .5s ease-in-out;
@@ -42,7 +43,6 @@ body {
 .chat__button {
     text-align: right;
 }
-
 
 .send__button {
     padding: 6px;
@@ -72,7 +72,6 @@ body {
     background-color: orange;
     max-width: 60.6%;
     width: fit-content;
-
 }
 
 .messages__item--operator {
@@ -106,7 +105,7 @@ body {
 .chat__header {
     position:sticky
     top: 0;
-    background: black;
+    background: yellow;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -123,12 +122,12 @@ body {
 
 .chat__heading--header {
     font-size: 1.2rem;
-    color: white;
+    color: black;
 }
 
 .chat__description--header {
     font-size: .9rem;
-    color: white;
+    color: black;
 }
 
 /* Messages */
@@ -148,16 +147,16 @@ body {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    color:white;
-    background-color:orange;
+    color:black;
+    background-color:white;
 }
 
 .messages__item--operator {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 /* FOOTER */
@@ -190,7 +189,7 @@ body {
 .chat__button button:focus,
 .chat__button button:visited {
     padding: 10px;
-    background: white;
+    background: yellow;
     border: none;
     outline: none;
     border-top-left-radius: 50px;

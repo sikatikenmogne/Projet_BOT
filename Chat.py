@@ -4,6 +4,8 @@ import google.generativeai as gn
 from flask import Flask
 from flask_mysqldb import MySQL
 
+app = Flask(__name__)
+
 
 def discussion(message):
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = (
@@ -23,7 +25,9 @@ def discussion(user_input):
     # Chemin vers le fichier de configuration JSON
     PROMPTS_FILE = './Prompts/prompts.json'
 
+
     # Charger les prompts à partir du fichier JSON
+
     def load_prompts(file_path):
         with open(file_path, 'r', encoding='utf-8') as file:
             return json.load(file)
@@ -66,6 +70,7 @@ def discussion(user_input):
                     return response.text
 
         return "Je ne suis pas sûr de comprendre. Pouvez-vous reformuler votre question?"
+
 
     # Exemple d'utilisation
     response = generate_response(user_input)
