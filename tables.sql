@@ -25,9 +25,10 @@ CREATE TABLE Commande (
 
 CREATE TABLE LigneCommande (
     IdentifiantLigneCommande INT PRIMARY KEY AUTO_INCREMENT,
+    date DATE,
+    heure TIME,
     IdentifiantCommande INT,
     IdentifiantProduit INT,
-    Quantite INT NOT NULL,
     FOREIGN KEY (IdentifiantCommande) REFERENCES Commande(IdentifiantCommande),
     FOREIGN KEY (IdentifiantProduit) REFERENCES Produit(IdentifiantProduit)
 );

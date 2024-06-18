@@ -1,6 +1,10 @@
-from flask import Flask, jsonify, render_template, request,url_for
+from flask import Flask, jsonify, render_template, request, url_for
 from flask_mysqldb import MySQL
 from jinja2 import TemplateNotFound
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 
 from Chat import discussion
 
@@ -9,11 +13,11 @@ app = Flask(__name__)
 # Configuration de la base de données
 app.config['MYSQL_HOST'] = '127.0.0.1'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'chatbot_projet'
-app.config['MYSQL_DB'] = 'chatbot_second'
-
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'chatbot'
 
 mysql = MySQL(app)
+
 
 @app.route('/')
 def index():
@@ -24,7 +28,8 @@ def index():
     except Exception as e:
         return f"An error occurred: {e}", 500
 
-@app.route('/reservation', methods = ['POST'])
+
+@app.route('/reservation', methods=['POST'])
 def ajouter_reservation():
     data = request.get_json()
     idUser = data.get('idUser')
@@ -34,21 +39,43 @@ def ajouter_reservation():
     stat = data.get('stat')
     try:
         cur = mysql.connection.cursor()
-        cur.execute("call addreservation(%s,%s, %s, %s, %s)", (idUser, date,heure,np,stat))
+        cur.execute("call addreservation(%s,%s, %s, %s, %s)", (idUser, date, heure, np, stat))
         mysql.connection.commit()
         cur.close()
         return ("Sucess")
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-    
-@app.route('/chat', methods = ['POST'])
+
+
+@app.route('/chat', methods=['POST'])
 def interraction():
     data = request.get_json()
     message = data['message']
     response = discussion(message)
     response_str = str(response)
 
-    return response_str #json.dumps(response_dict)
+    return response_str  # json.dumps(response_dict)
+
+
+@app.route('/mail', methods=['POST'])
+def send_mail():
+        # Récupération des données du formulaire
+
+        expéditeur = request.form['expéditeur']
+        destinataire = request.form['destinataire']
+        sujet = request.form['sujet']
+        body = request.form['body']
+
+        # Envoi du mail
+        msg = MIMEText(body)
+        msg['Sujet'] = sujet
+        msg['From'] = expéditeur
+        msg['To'] = destinataire
+
+        with smtplib.SMTP('localhost', 25) as smtp:
+            smtp.send_message(msg)
+
+        return jsonify({'message': 'Mail envoyé avec succès.'})
 
 
 @app.route('/commande', methods=['POST'])
@@ -70,7 +97,6 @@ def addCommande():
         id_commande = cur.fetchone()
         if id_commande:
             id_commande = id_commande[0]
-
 
             try:
                 cur.execute("CALL AddLigneCommande(%s,%s, %s,%s)", (id_commande, date, heure, idUser))
@@ -109,6 +135,6 @@ def get_products():
 
     return jsonify(products_list)
 
+
 if __name__ == '__main__':
     app.run(debug=True)
-

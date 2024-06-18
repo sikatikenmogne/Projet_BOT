@@ -52,16 +52,17 @@ BEGIN
     VALUES (pNom, pEmail, pMotDePasse);
 END //
 
-DELIMITER //
+DELIMITER $$
 
 CREATE PROCEDURE AddLigneCommande(
-    IN pCommandeId INT,
-    IN pDatecommande DATE,
-    IN pHeurecommande TIME,
-    IN pUtilisateurId INT,
-
+    IN pidentifiant_commande INT,
+    IN pdate DATE,
+    IN pheure TIME,
+    IN pidentifiant_produit INT
 )
 BEGIN
-    INSERT INTO LigneCommande (IdentifiantCommande,datecommande,heurecommande,UtilisateurId )
-    VALUES (pCommandeId,pDatecommande,pHeurecommande,pUtilisateurId);
-END //
+    INSERT INTO LigneCommande (IdentifiantCommande, date, heure, IdentifiantProduit)
+    VALUES (pidentifiant_commande, pdate, pheure, pidentifiant_produit);
+END $$
+
+DELIMITER ;

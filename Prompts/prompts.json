@@ -30,7 +30,6 @@
       "output": "Vous pouvez me poser des questions sur notre menu. Nous proposons une variété de plats délicieux. Quel type de plat ou d'information cherchez-vous?"
     },
 
-
     {
       "input": "Merci",
       "output": "Merci d'avoir commandé chez [Nom du Fast-Food]! Votre commande sera prête sous peu. Avez-vous besoin de quelque chose d'autre?"
