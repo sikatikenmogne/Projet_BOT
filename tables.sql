@@ -6,13 +6,13 @@ CREATE TABLE Utilisateur (
 );
 
 CREATE TABLE Produit (
-    IdentifiantProduit INT PRIMARY KEY AUTO_INCREMENT,
+    IdProduit INT PRIMARY KEY AUTO_INCREMENT,
     Nom VARCHAR(100) NOT NULL,
     Description TEXT,
     Prix FLOAT NOT NULL,
     Categorie VARCHAR(50),
-    Disponibilite BOOLEAN NOT NULL
-);
+    Disponibilite BOOLEAN
+)
 
 CREATE TABLE Commande (
     IdentifiantCommande INT PRIMARY KEY AUTO_INCREMENT,

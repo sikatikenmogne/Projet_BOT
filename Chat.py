@@ -21,6 +21,22 @@ def discussion(message):
 
 # discussion("Parle moi du Cameroun")
 
+def getProduct(word):
+    app = Flask(__name__)
+    mysql = MySQL(app)
+    cur = mysql.connection.cursor()
+    query = "SELECT Nom, Prix, description FROM produit WHERE nom = %s"
+
+    # Encode the word to bytes if necessary
+    word_bytes = word.encode('utf-8')
+
+    # Execute the query with the encoded word
+    cur.execute(query, (word_bytes,))
+    product = cur.fetchall()
+    cur.close()
+
+    return product
+
 def get_all_prod():
     app = Flask(__name__)
     mysql = MySQL(app)
@@ -28,13 +44,12 @@ def get_all_prod():
     cur.execute("SELECT Nom, Prix,description FROM produit")
     products = cur.fetchall()
     cur.close()
-    print("----------------")
     productList = ''
     for i in products:
         for j in i:
-            print(j)
             productList += str(j) + ' ,'
     return productList
+
 
 def get_list_prod():
     productsList = []
@@ -79,6 +94,7 @@ def discussion(user_input):
 
 
     # Fonction pour générer une réponse en utilisant les prompts JSON
+
     def generate_response(user_input):
 
         for scenario in prompts_data['scenarios']:
@@ -86,6 +102,7 @@ def discussion(user_input):
                 if user_input.lower() in ['commande','commander','acheter']:
 
                     prompt = scenario['output'] + get_all_prod();
+                    print(prompt)
                     response = model.generate_content(prompt)
                     print(response.text)
                     return response.text
@@ -103,52 +120,42 @@ def discussion(user_input):
 
                     elif word.lower() in ['commande','commander','acheter']:
 
-                        prompt = scenario['output'] + get_all_prod();
+                        prompt = scenario['output'][2] + get_all_prod();
+                        print(prompt)
                         response = model.generate_content(prompt)
-                        print(response.text)
-                        return response.text
+                        return "Que souhaiteriez vous manger \n"+response.text
 
                     elif word_in_product(word):
 
                         url = "http://127.0.0.1:5000/commande"
                         payload = {
-                            "idUser": 1,
+                            "idUser": "1",
                             "date": "2024-05-24 12:00:00",
                             "heure": "2024-05-24 14:38:40",
-                            "stat": "en cours"
+                            "stat": "pret"
                         }
+
                         # Convertir le dictionnaire en chaîne JSON pour vérification
+                        # payload_json = json.dumps(payload)
+                        # print("Pavyload JSON:", payload_json)
+
                         payload_json = json.dumps(payload)
-                        print("Payload JSON:", payload_json)
-
-                        headers = {
-                            "Content-Type": "application/json",  # Indique que le contenu est en JSON
-                            "Authorization": "Bearer your_token_here"
-                            # Remplacez par votre token d'autorisation si nécessaire
-                        }
-                        responseApi = requests.post(url, data=payload_json, headers=headers)
-
+                        responseApi = requests.post(url, data=payload_json, headers={'Content-Type': 'application/json'})
+                        print(responseApi.status_code)
+                        print(word)
+                        detail = str(getProduct(word))
                         # Vérifier le statut de la réponse
                         if responseApi.status_code == 200:
-                            data = responseApi.json()
-                            print(data)
-                            # Afficher les détails de la requête pour diagnostic
-                            print("Request URL:", responseApi.request.url)
-                            print("Request Headers:", responseApi.request.headers)
-                            print("Request Body:", responseApi.request.body)
-                            prompt = "le client a commander " + word.lower() + ". dis luis que sa commande a été enregistré avec succès"
+                            prompt = f"Le client a commandé {word.lower()}. Dis-lui que sa commande a été enregistrée avec succès. Donne lui en fin la facture de sa commande en fonction du produit suivant et le montant total :"+detail
                             response = model.generate_content(prompt)
-                            print(response.text)
-
-                            return 'response.text'
+                            return response.text
                         else:
-                            # Afficher le statut et le message d'erreur
-                            print(f"Error: {responseApi.status_code}")
-                            return " commande non enregistrée"
+                            print(responseApi.text)
+                            return "Commande non enregistrée"
+            return "Je ne suis pas sûr de comprendre. Pouvez-vous reformuler votre question?"
 
 
 
-        return "Je ne suis pas sûr de comprendre. Pouvez-vous reformuler votre question?"
 
 
     # Exemple d'utilisation

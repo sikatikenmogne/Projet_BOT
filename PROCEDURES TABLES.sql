@@ -1,6 +1,7 @@
 DELIMITER //
 
 CREATE PROCEDURE AddProduit(
+    IN pIdProduit INT,
     IN pNom VARCHAR(100),
     IN pDescription TEXT,
     IN pPrix FLOAT,
@@ -8,9 +9,12 @@ CREATE PROCEDURE AddProduit(
     IN pDisponibilite BOOLEAN
 )
 BEGIN
-    INSERT INTO Produit (Nom, Description, Prix, Categorie, Disponibilite)
-    VALUES (pNom, pDescription, pPrix, pCategorie, pDisponibilite);
+    INSERT INTO Produit (IdProduit, Nom, Description, Prix, Categorie, Disponibilite)
+    VALUES (pIdProduit, pNom, pDescription, pPrix, pCategorie, pDisponibilite);
 END //
+
+DELIMITER ;
+
 
 DELIMITER //
 

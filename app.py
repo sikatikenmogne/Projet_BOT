@@ -2,11 +2,15 @@ from flask import Flask, jsonify, render_template, request, url_for
 from flask_mysqldb import MySQL
 from jinja2 import TemplateNotFound
 import smtplib
+import os
+from dotenv import load_dotenv
+from email.utils import formataddr
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-
-
 from Chat import discussion
+
+
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -54,29 +58,43 @@ def interraction():
     response = discussion(message)
     response_str = str(response)
 
-    return response_str  # json.dumps(response_dict)
+    return response_str
 
 
 @app.route('/mail', methods=['POST'])
 def send_mail():
-        # Récupération des données du formulaire
+    data = request.get_json()
 
-        expéditeur = request.form['expéditeur']
-        destinataire = request.form['destinataire']
-        sujet = request.form['sujet']
-        body = request.form['body']
+    required_keys = ['sender', 'recipient', 'subject', 'body']
+    for key in required_keys:
+        if key not in data:
+            return jsonify({"error": f"La clé '{key}' est manquante"}), 400
 
-        # Envoi du mail
-        msg = MIMEText(body)
-        msg['Sujet'] = sujet
-        msg['From'] = expéditeur
-        msg['To'] = destinataire
+    sender = data['sender']
+    recipient = data['recipient']
+    subject = data['subject']
+    body = data['body']
 
-        with smtplib.SMTP('localhost', 25) as smtp:
-            smtp.send_message(msg)
+     # Envoi du mail
+    msg = MIMEText(body)
+    msg['Subject'] = subject
+    msg['From'] = sender
+    msg['To'] = recipient
 
-        return jsonify({'message': 'Mail envoyé avec succès.'})
+    email_address = os.getenv('kengnimires003@gmail.com')
+    email_password = os.getenv('698206094')
 
+    try:
+        with smtplib.SMTP('smtp.gmail.com', 587) as server:
+            server.starttls()
+            server.login(email_address, email_password)
+            server.sendmail(sender, recipient, msg.as_string())
+    except smtplib.SMTPAuthenticationError:
+        return jsonify({"error": "Erreur d'authentification SMTP. Vérifiez vos identifiants."}), 500
+    except smtplib.SMTPException as e:
+        return jsonify({"error": f"Erreur lors de l'envoi du mail: {str(e)}"}), 500
+
+    return jsonify({'message': 'Mail envoyé avec succès.'}), 200
 
 @app.route('/commande', methods=['POST'])
 def addCommande():
@@ -90,7 +108,7 @@ def addCommande():
     try:
         cur = mysql.connection.cursor()
 
-        cur.execute("CALL InsertCommande_new(%s, %s, %s)", (idUser, date, stat))
+        cur.execute("CALL AddCommande(%s, %s, %s)", (idUser, date, stat))
 
         cur.execute("SELECT @id_commande")
 
@@ -111,29 +129,30 @@ def addCommande():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route('/products', methods=['GET'])
-def get_products():
+
+@app.route('/produit', methods=['GET'])
+def get_produit():
     cur = mysql.connection.cursor()
     cur.execute("SELECT * FROM produit")
-    products = cur.fetchall()
+    produit = cur.fetchall()
     cur.close()
 
     # Transformation des produits en dictionnaires
-    products_list = []
-    print(products)
-    for product in products:
+    produit_list = []
+    print(produit)
+    for produit in produit:
         product_dict = {
-            'id': product[0],
-            'name': product[1],
-            'description': product[2],
-            'price': product[3],
-            'category': product[4],
-            'availability': product[5],
+            'id': produit[0],
+            'name': produit[1],
+            'description': produit[2],
+            'prix': produit[3],
+            'categorie': produit[4],
+            'disponibilite': produit[5],
 
         }
-        products_list.append(product_dict)
+        produit_list.append(product_dict)
 
-    return jsonify(products_list)
+    return jsonify(produit_list)
 
 
 if __name__ == '__main__':

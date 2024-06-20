@@ -7,12 +7,11 @@
 
     {
       "input": ".*\\b(commande|commander|acheter)\\b.*",
-      "output": "le client veut passer une commande. A la fin se trouve les produits disponible. Demande simplement lequel il voudrait commander suivi des prix en fcfa et la description du produit : "
+      "output": "Tu es le chatbot de pizzalight. le client veut passer une commande. Presente avec une phrase simple au client ce qu'il veut exemple : Que souhaiteriez vous commander a manger chez pizzalight en suite demande simplement lequel il voudrait commander suivi des prix en fcfa et la description du produit : "
     },
-
      {
-      "input": ".*\\b(Qu'avez vous comme boisson à me proposer?|quels sont les boissons disponibles?)\\b.*",
-      "output": "(reagis un peu plus comme un humain dans ta facon de repondre) et propose lui comme boisson gazeuse du coca,du fanta,et malta et comme boisson nature du jus d'ananas ,de baoba,et du bissap sans plus details ou explications sur les produits en étant poli a la fin "
+      "input": ".*\\b(quels sont les boissons disponibles?)\\b.*",
+      "output": "(reagis un peu plus comme un humain dans ta facon de repondre) et propose lui les boissons disponibles ainsi que leur prix en fcfa et la description du produit  "
     },
 
     {
