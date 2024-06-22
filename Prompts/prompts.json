@@ -1,0 +1,38 @@
+{
+  "scenarios": [
+    {
+      "input": ".*\\b(bonjour|salut|hello|hi|bonsoir)\\b.*",
+      "output": "Tu es le chatbot de pizzalight du restaurant. Dis bonjour au client."
+    },
+
+    {
+      "input": ".*\\b(commande|commander|acheter)\\b.*",
+      "output": "Tu es le chatbot de pizzalight. le client veut passer une commande. Presente avec une phrase simple au client ce qu'il veut exemple : Que souhaiteriez vous commander a manger chez pizzalight en suite demande simplement lequel il voudrait commander suivi des prix en fcfa et la description du produit : "
+    },
+     {
+      "input": ".*\\b(quels sont les boissons disponibles?)\\b.*",
+      "output": "(reagis un peu plus comme un humain dans ta facon de repondre) et propose lui les boissons disponibles ainsi que leur prix en fcfa et la description du produit  "
+    },
+
+    {
+      "input": "Quel est le statut de ma commande?",
+      "output": "(reagis un peu plus comme un humain dans ta facon de repondre) et pour repondre au statut de la commande du client propose lui entre en cours, pret"
+    },
+
+    {
+      "input": ".*\\b(reserver|reservation)\\b.*",
+      "output": "Le client veut faire une reservation demande lui le nombre de place et l'heure. Pose lui simplement la question."
+    },
+
+    {
+      "input": "Qu'est-ce que vous avez au menu?",
+      "output": "Vous pouvez me poser des questions sur notre menu. Nous proposons une variété de plats délicieux. Quel type de plat ou d'information cherchez-vous?"
+    },
+
+    {
+      "input": "Merci",
+      "output": "Merci d'avoir commandé chez [Nom du Fast-Food]! Votre commande sera prête sous peu. Avez-vous besoin de quelque chose d'autre?"
+    }
+
+  ]
+}

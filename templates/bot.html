@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bot.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="chat">
+        <div class="chat__support">
+            <div class="chat__header">
+                <div class="chat__image--header">
+                    <img src="https://img.icons8.com/color/48/000000/circled-user-female-skin-type-5--v1.png" alt="image">
+                </div>
+                <div class="chat__content--header">
+                    <h4 class="chat__heading--header">Mon Chatbot</h4>
+                    <p class="chat__description--header">Bienvenue Monsieur/Madame. Comment puis-je vous aider ?</p>
+                </div>
+            </div>
+            <div class="chat__messages">
+                <div></div>
+            </div>
+            <div class="chat__footer">
+                <input type="text" placeholder="Ecrire un message...">
+                <button class="chat__send--footer send__button">Send</button>
+            </div>
+        </div>
+        <div class="chat__button">
+            <button><img src="./images/chatbot-icon.svg" alt="Chatbot" /></button>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>
