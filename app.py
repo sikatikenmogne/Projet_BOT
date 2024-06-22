@@ -1,14 +1,20 @@
 from flask import Flask, jsonify, render_template, request, url_for
 from flask_mysqldb import MySQL
+from google.oauth2.credentials import Credentials
+from google_auth_httplib2 import Request
+from google_auth_oauthlib.flow import InstalledAppFlow
+# from google.auth.transport.requests import Request
 from jinja2 import TemplateNotFound
-import smtplib
-import os
 from dotenv import load_dotenv
-from email.utils import formataddr
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 from Chat import discussion
+import os
+import base64
+from email.message import EmailMessage
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 
+
+SCOPES = ["https://www.googleapis.com/auth/gmail.send"]
 
 load_dotenv()
 
@@ -62,40 +68,55 @@ def interraction():
     return response_str
 
 
-@app.route('/mail', methods=['POST'])
-def send_mail():
-    data = request.get_json()
 
-    required_keys = ['sender', 'recipient', 'subject', 'body']
-    for key in required_keys:
-        if key not in data:
-            return jsonify({"error": f"La clé '{key}' est manquante"}), 400
+# def gmail_send_message():
+#     creds = None
+#     if os.path.exists("token.json"):
+#         creds = Credentials.from_authorized_user_file("token.json", SCOPES)
+#
+#     if not creds or not creds.valid:
+#         if creds and creds.expired and creds.refresh_token:
+#             creds.refresh(Request())
+#         else:
+#             flow = InstalledAppFlow.from_client_secrets_file(
+#                 "API gmail.json ", SCOPES
+#             )
+#             creds = flow.run_local_server(port=0)
+#         with open("token.json", "w") as token:
+#             token.write(creds.to_json())
+#
+#     try:
+#         # Créer un client API Gmail
+#         service = build("gmail", "v1", credentials=creds)
+#
+#         # Créer le message email
+#         message = EmailMessage()
+#         message.set_content("votre commande est bien enregistrée. Merci! ")
+#
+#         message["To"] = "kengnimires003@gmail.com "
+#         message["From"] = "miresmk004@gmail.com"
+#         message["Subject"] = "PIZZALIGHT "
+#
+#         # Encoder le message en base64 pour l'API Gmail
+#         encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
+#
+#         create_message = {"raw": encoded_message}
+#         # pylint: disable=E1101
+#         send_message = (
+#             service.users()
+#                 .messages()
+#                 .send(userId="me", body=create_message)
+#                 .execute()
+#         )
+#         print(f'ID du message : {send_message["id"]}')
+#
+#     except HttpError as error:
+#         print(f"Une erreur s'est produite : {error}")
+#         send_message = None
+#
+#     return send_message
 
-    sender = data['sender']
-    recipient = data['recipient']
-    subject = data['subject']
-    body = data['body']
 
-     # Envoi du mail
-    msg = MIMEText(body)
-    msg['Subject'] = subject
-    msg['From'] = sender
-    msg['To'] = recipient
-
-    email_address = os.getenv('kengnimires003@gmail.com')
-    email_password = os.getenv('698206094')
-
-    try:
-        with smtplib.SMTP('smtp.gmail.com', 587) as server:
-            server.starttls()
-            server.login(email_address, email_password)
-            server.sendmail(sender, recipient, msg.as_string())
-    except smtplib.SMTPAuthenticationError:
-        return jsonify({"error": "Erreur d'authentification SMTP. Vérifiez vos identifiants."}), 500
-    except smtplib.SMTPException as e:
-        return jsonify({"error": f"Erreur lors de l'envoi du mail: {str(e)}"}), 500
-
-    return jsonify({'message': 'Mail envoyé avec succès.'}), 200
 
 @app.route('/commande', methods=['POST'])
 def addCommande():
@@ -157,4 +178,5 @@ def get_produit():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+      app.run(debug=True)
+      # gmail_send_message()
