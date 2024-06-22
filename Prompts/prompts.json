@@ -7,7 +7,7 @@
 
     {
       "input": ".*\\b(commande|commander|acheter)\\b.*",
-      "output": "Tu es le chatbot de pizzalight. le client veut passer une commande. Presente avec une phrase simple au client ce qu'il veut exemple : Que souhaiteriez vous commander a manger chez pizzalight en suite demande simplement lequel il voudrait commander suivi des prix en fcfa et la description du produit : "
+      "output": "Tu es le chatbot de pizzalight. le client veut passer une commande. Presente avec un paragraphe au client chaque tuple de produit sur une ligne differente en utilisant les tags html sans prendre en consideration la syntaxe de markdown"
     },
      {
       "input": ".*\\b(quels sont les boissons disponibles?)\\b.*",
