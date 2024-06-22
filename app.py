@@ -12,6 +12,7 @@ from Chat import discussion
 
 load_dotenv()
 
+
 app = Flask(__name__)
 
 # Configuration de la base de données
