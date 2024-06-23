@@ -1,3 +1,6 @@
+import { marked } from 'marked';
+// Use marked as needed
+
 class Chat{
     constructor() {
         this.args = {
@@ -71,13 +74,15 @@ class Chat{
     updateChatText(chat) {
         var html = '';
         this.messages.slice().reverse().forEach(function(item, index) {
+            let messageHtml = marked(item.message);
+            console.log(messageHtml)
             if (item.name === "Mires")
             {
-                html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>'
+                html += '<div class="messages__item messages__item--visitor">' + messageHtml + '</div>'
             }
             else
             {
-                html += '<div class="messages__item messages__item--operator">' + item.message + '</div>'
+                html += '<div class="messages__item messages__item--operator">' + messageHtml + '</div>'
             }
           });
 
