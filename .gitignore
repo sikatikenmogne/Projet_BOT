@@ -112,3 +112,10 @@ dmypy.json
 GoogleCloudSDKInstaller.exe
 uninstaller.exe
 google-cloud-sdk/
+
+# Node.js
+node_modules/
+
+# Webpack
+dist/bundle.js
+static/dist/bundle.js
