@@ -11,10 +11,16 @@ app = Flask(__name__)
 
 
 def discussion(message):
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = (
-        r"C:\Users\Miss MK\Desktop\2 EME ANNEE\STAGE\Projet BOT KENGNI Mires"
-        r"\monprojetchat-2024-ca4187bfef81.json"
-    )
+
+    # Get the directory of the current script
+    dir_path = os.path.dirname(os.path.abspath(__file__))
+    
+    # Construct the relative path to the credentials file
+    credentials_path = os.path.join(dir_path, 
+                                    'chatbot-2024-427303-7d23c72c172f.json')
+    # print(credentials_path)
+    # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
     model = gn.GenerativeModel('gemini-pro')
     response = model.generate_content(message)
 
@@ -91,10 +97,17 @@ def discussion(user_input):
 
     # Initialiser les prompts
     prompts_data = load_prompts(PROMPTS_FILE)
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = (
-        r"C:\Users\Miss MK\Desktop\2 EME ANNEE\STAGE\Projet BOT KENGNI Mires"
-        r"\monprojetchat-2024-ca4187bfef81.json"
-    )
+    
+    # Get the directory of the current script
+    dir_path = os.path.dirname(os.path.abspath(__file__))
+
+    # Construct the relative path to the credentials file
+    credentials_path = os.path.join(dir_path, 'chatbot-2024-427303-7d23c72c172f.json')
+
+    # print(credentials_path)
+
+    # Set the GOOGLE_APPLICATION_CREDENTIALS environment variable
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
 
     model = gn.GenerativeModel('gemini-pro')
 
