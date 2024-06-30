@@ -24,7 +24,7 @@ app = Flask(__name__)
 # Configuration de la base de données
 app.config['MYSQL_HOST'] = '127.0.0.1'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = 'admin'
 app.config['MYSQL_DB'] = 'chatbot'
 
 mysql = MySQL(app)
@@ -64,6 +64,10 @@ def interraction():
     message = data['message']
     response = discussion(message)
     response_str = str(response)
+
+    print("===== prompt response =====")
+    print(response_str)
+    print("===========================")
 
     return response_str
 

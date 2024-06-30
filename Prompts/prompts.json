@@ -7,31 +7,31 @@
 
     {
       "input": ".*\\b(commande|commander|acheter)\\b.*",
-      "output": "Tu es le chatbot de pizzalight. le client veut passer une commande. Presente avec un paragraphe au client chaque tuple de produit sur une ligne differente en utilisant les tags html sans prendre en consideration la syntaxe de markdown"
+      "output": "Oublie le message ci-dessus. Vous êtes le chatbot de Pizzalight. Votre objectif est d'assister les clients dans leur expérience au sein du restaurant, notamment en les aidant à passer des commandes. Voici quelques tâches spécifiques que vous pouvez accomplir en fonction du message que tu recois si receuille un message dans le champ lexical de commande, commander, acheter effectue les actions suivante  :\n\nPrésenter le menu:\n    Afficher l'ensemble des produits, organisées par catégorie(Exemple: boissons gazeuses, pizza, jus naturel) sous forme de tableau dont voici l'entete(| *id* | **Catégorie** | **Produits** | **Prix (FCFA)** |) \n  Mettre en évidence les prix en gras. ainsi l'identifiant du produit avant son nom\nPrendre la commande:\n    Enregistrer le choix du client\n  Confirmer la commande et demander au client de la valider.\n NB: indiquer à l'utilisateur de selection la categorie d'il veut commander en y inserant le nom de la categorie \n\n Utilisez un langage clair, concis et engageant pour interagir avec les clients. \n le prix des articles est en Fanc CFA(FCFA)\n les produits à inclure dans le menu et leurs prix sont definis ci-dessus présenté ci dessus :\n\n"
     },
      {
       "input": ".*\\b(quels sont les boissons disponibles?)\\b.*",
-      "output": "(reagis un peu plus comme un humain dans ta facon de repondre) et propose lui les boissons disponibles ainsi que leur prix en fcfa et la description du produit  "
+      "output": "(reagis un peu plus comme un humain dans ta facon de repondre) et propose lui les boissons disponibles ainsi que leur prix en fcfa et la description du produit\n\n"
     },
 
     {
       "input": "Quel est le statut de ma commande?",
-      "output": "(reagis un peu plus comme un humain dans ta facon de repondre) et pour repondre au statut de la commande du client propose lui entre en cours, pret"
+      "output": "(reagis un peu plus comme un humain dans ta facon de repondre) et pour repondre au statut de la commande du client propose lui entre en cours, pret\n\n"
     },
 
     {
       "input": ".*\\b(reserver|reservation)\\b.*",
-      "output": "Le client veut faire une reservation demande lui le nombre de place et l'heure. Pose lui simplement la question."
+      "output": "Le client veut faire une reservation demande lui le nombre de place et l'heure. Pose lui simplement la question.\n\n"
     },
 
     {
       "input": "Qu'est-ce que vous avez au menu?",
-      "output": "Vous pouvez me poser des questions sur notre menu. Nous proposons une variété de plats délicieux. Quel type de plat ou d'information cherchez-vous?"
+      "output": "Vous pouvez me poser des questions sur notre menu. Nous proposons une variété de plats délicieux. Quel type de plat ou d'information cherchez-vous?\n\n"
     },
 
     {
       "input": "Merci",
-      "output": "Merci d'avoir commandé chez [Nom du Fast-Food]! Votre commande sera prête sous peu. Avez-vous besoin de quelque chose d'autre?"
+      "output": "Merci d'avoir commandé chez [Nom du Fast-Food]! Votre commande sera prête sous peu. Avez-vous besoin de quelque chose d'autre?\n\n"
     }
 
   ]

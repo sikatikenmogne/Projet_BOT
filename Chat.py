@@ -50,14 +50,17 @@ def get_all_prod():
     app = Flask(__name__)
     mysql = MySQL(app)
     cur = mysql.connection.cursor()
-    cur.execute("SELECT Nom, Prix,description FROM produit")
+    cur.execute("SELECT DISTINCT Nom, Prix, Description FROM produit")
     products = cur.fetchall()
     cur.close()
-    productList = ''
-    for i in products:
-        for j in i:
-            productList += str(j) + ' ,'
-    return str(products)
+    productList = []
+    for product in products:
+        productList.append({
+            'Nom': product[0],
+            'Prix': product[1],
+            'Description': product[2]
+        })
+    return productList
 
 
 def get_list_prod():
@@ -111,6 +114,27 @@ def discussion(user_input):
 
     model = gn.GenerativeModel('gemini-pro')
 
+    def get_all_prod_formatted():
+        products = get_all_prod()  # Assurez-vous que cela inclut 'Categorie'
+        # Regrouper les produits par catégorie
+        products_by_category = {}
+        for product in products:
+            category = product['Nom']
+            if category not in products_by_category:
+                products_by_category[category] = []
+            products_by_category[category].append(product)
+        
+        # Formatter les produits par catégorie
+        formatted_products = ""
+        count = 1
+        for category, products in products_by_category.items():
+            formatted_products += f"**{category}:**\n"
+            for i, product in enumerate(products, start=1):
+                formatted_products += f"{count}. **{product['Description']}:** {product['Prix']} FCFA\n"
+                count = count + 1
+            formatted_products += ""  # Ajouter un espace entre les catégories
+        
+        return formatted_products
 
     # Fonction pour générer une réponse en utilisant les prompts JSON
 
@@ -122,8 +146,11 @@ def discussion(user_input):
             if user_input.lower() in scenario['input'].lower():
                 if user_input.lower() in ['commande','commander','acheter']:
 
-                    prompt = scenario['output'] + get_all_prod();
+
+                    prompt = scenario['output'] + get_all_prod_formatted()
+                    print("======== hello context prompt ==========")
                     print(prompt)
+                    print("==================")
                     response = model.generate_content(prompt)
                     # gmail_send_message()
                     print(response.text)
@@ -144,9 +171,11 @@ def discussion(user_input):
 
                     elif word.lower() in ['commande','commander','acheter']:
 
-                        # prompt = scenario['output'][2] + get_all_prod();
-                        prompt = scenario['output'][1] + get_all_prod()
+
+                        prompt = prompts_data['scenarios'][1]['output'] + get_all_prod_formatted()
+                        print('-----------order context prompt------------')
                         print(prompt)
+                        print('-------------------------------------------')
                         response = model.generate_content(prompt)
                         return "Que souhaiteriez vous commander? \n"+response.text
 
